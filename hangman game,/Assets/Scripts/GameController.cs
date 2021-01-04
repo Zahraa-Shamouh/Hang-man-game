@@ -37,8 +37,8 @@ public class GameController : MonoBehaviour
             return; 
         }
 
-        if (! Input.anyKeyDown)
-            return; 
+       // if (! Input.anyKeyDown)
+       //     return; 
 
 
         string s = Input.inputString;
@@ -66,7 +66,7 @@ public class GameController : MonoBehaviour
     {
         bool checks = false; // by defult we fail the check 
         int complete = 0; 
-        score = 0; //initial score value. 
+        int score = 0; //initialze score value to zero. 
 
         for (int i = 0; i < Revealed.Length; i++)
         {
@@ -127,7 +127,7 @@ public class GameController : MonoBehaviour
 
     private void updatescoreIndicator()
     {
-        scoreIndicator.text = "Score: " + score; 
+        scoreIndicator.text = "Your Score: " + score; 
     }
 
 
@@ -138,21 +138,23 @@ public class GameController : MonoBehaviour
         word = word.ToUpper(); 
         this.word = word;
         Revealed = new char[word.Length];
-        letterIndicator.text = "Letters: " + word.Length; //# of letters, how long the letters is. 
-
+        letterIndicator.text = "Number of Letters: " + word.Length; //# of letters, how long the letters is. 
         updateWordIndicator(); 
     }
 
     public void next() {
-        SetwordIndicator("zahraa"); 
+        hangman.reset();          // call it from the HangmanController.cs
+        GameCompleted = false;
+        SetwordIndicator(WordBank.instance.next(0)); 
     }
 
     public void reset()
     {
         //setting the scoure 
         score = 0;                //the initial value of the score!
-        GameCompleted = false;    //game is not finish. 
-        hangman.reset();          // call it from the HangmanController.cs
+        //GameCompleted = false;    //game is not finish. 
+       
+        //GameCompleted = false; 
         updatescoreIndicator();   // get the score. 
         next();                   //call fuction in a function. 
     }

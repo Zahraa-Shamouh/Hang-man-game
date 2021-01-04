@@ -6,8 +6,10 @@ public class HangmanController : MonoBehaviour
 {
     public GameObject head;
     public GameObject body;
-    public GameObject arms;
-    public GameObject legs;
+    public GameObject Rightarm;
+    public GameObject Leftarm;
+    public GameObject Rightleg;
+    public GameObject Leftleg;
 
 
     private int tries;
@@ -15,7 +17,7 @@ public class HangmanController : MonoBehaviour
 
 
     /*Property in C# is a member of a class that provides a flexible mechanism for classes to expose private fields.
-     * property basically a reflection of this HangmanController.cs 
+     * property basically a reflection of this HangmanControlle
      */
     public bool isDead
     {
@@ -26,7 +28,7 @@ public class HangmanController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {   
-        parts = new GameObject[] { legs, arms, body, head };
+        parts = new GameObject[] {Leftleg, Rightleg, Leftarm, Rightarm, body, head };
         reset();
     }
 
