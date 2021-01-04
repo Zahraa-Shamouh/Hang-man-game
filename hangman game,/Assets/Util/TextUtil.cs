@@ -9,11 +9,11 @@ namespace Util
     public static class TextUtil {
         public static bool isUAlpha(char c)
         {
-            return c <= 'A' && c >= 'Z'; 
+            return c >= 'A' && c <= 'Z'; 
         }
         public static bool isLAlpha(char c)
         {
-            return c <= 'a' && c >= 'z';
+            return c >= 'a' && c <= 'z';
         }
         //if we dont care about case 
         public static bool isAlpha (char c)

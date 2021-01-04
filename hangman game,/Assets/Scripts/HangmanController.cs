@@ -11,19 +11,52 @@ public class HangmanController : MonoBehaviour
 
 
     private int tries;
-   
+    GameObject[] parts;
+
+
+    /*Property in C# is a member of a class that provides a flexible mechanism for classes to expose private fields.
+     * property basically a reflection of this HangmanController.cs 
+     */
+    public bool isDead
+    {
+        get { return tries<0; }
+    }
 
 
     // Start is called before the first frame update
     void Start()
-    {
-        GameObject[] parts = new GameObject[] { legs, arms, body, head };
-        tries = parts.Length - 1; 
+    {   
+        parts = new GameObject[] { legs, arms, body, head };
+        reset();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void punish()
+    {
+        if (tries >= 0)
+        {
+            //make the hangman visible agin 
+            parts[tries--].SetActive(true); 
+        }
+    }
+
+    public void reset()
+    {
+        if (parts == null) //should be at the initially   
+            return;
+
+
+        tries = parts.Length - 1;
+
+        //make the hangman invisible 
+        foreach (GameObject man in parts)
+        {
+            man.SetActive(false); 
+        }
     }
 }

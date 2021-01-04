@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI; //so we can get the text. 
-using Util;  //import the Util class. 
+using UnityEngine.UI;  //so we can get the text. 
+using Util;            //import the Util class. 
 
 public class GameController : MonoBehaviour
 {
@@ -26,14 +26,83 @@ public class GameController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+     void Update()
     {
+        //move to the next word; 
+        if (GameCompleted)
+        {
+            string tmp = Input.inputString; 
+            if (Input.anyKeyDown)
+                next();
+            return; 
+        }
+
+        if (! Input.anyKeyDown)
+            return; 
+
+
         string s = Input.inputString;
         //one letter at a time
         if (s.Length == 1 && TextUtil.isLAlpha(s[0]))
         {
+            Debug.Log("Have " + s);
+
+            //chech to player failure. 
+            if (!check(s.ToUpper()[0]))
+            {
+                hangman.punish(); //punish is a method to be called whenever the player lose. 
+
+                if (hangman.isDead)
+                {
+                    //show the word to the player 
+                    wordIndicator.text = word; 
+                    GameCompleted = true; // gameover. 
+                }
+            }
+        }
+    }
+
+    private bool check (char c)
+    {
+        bool checks = false; // by defult we fail the check 
+        int complete = 0; 
+        score = 0; //initial score value. 
+
+        for (int i = 0; i < Revealed.Length; i++)
+        {
+            //we have a blank spot then we want to increment the score 
+            if (c == word[i])
+            {
+                checks = true; 
+                if (Revealed[i] == 0)
+                {
+                    Revealed[i] = c;
+                    score++; 
+                }
+            }
+
+            if (Revealed[i] != 0)
+            {
+                complete++; 
+            }
 
         }
+
+        //score manipulation 
+        if (score != 0)
+        {
+            this.score += score; 
+            if (complete == Revealed.Length)
+            {
+                this.GameCompleted = true;
+                this.score += Revealed.Length; 
+            }
+            updateWordIndicator(); 
+            updatescoreIndicator(); 
+        }
+
+        return checks; 
+
     }
     private void updateWordIndicator()
     {
@@ -54,25 +123,37 @@ public class GameController : MonoBehaviour
         
         wordIndicator.text = displayed; //to display the _ for the word so the player can guess it. 
     }
+
+
+    private void updatescoreIndicator()
+    {
+        scoreIndicator.text = "Score: " + score; 
+    }
+
+
+
     //to set the word 
     void SetwordIndicator(string word)
     {
+        word = word.ToUpper(); 
         this.word = word;
         Revealed = new char[word.Length];
-        letterIndicator.text = "" + word.Length; //# of letters, how long the letters is. 
+        letterIndicator.text = "Letters: " + word.Length; //# of letters, how long the letters is. 
 
         updateWordIndicator(); 
     }
 
-    void next() {
+    public void next() {
         SetwordIndicator("zahraa"); 
     }
 
-    void reset()
+    public void reset()
     {
         //setting the scoure 
         score = 0;                //the initial value of the score!
         GameCompleted = false;    //game is not finish. 
+        hangman.reset();          // call it from the HangmanController.cs
+        updatescoreIndicator();   // get the score. 
         next();                   //call fuction in a function. 
     }
 }
