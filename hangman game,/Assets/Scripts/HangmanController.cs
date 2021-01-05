@@ -17,7 +17,7 @@ public class HangmanController : MonoBehaviour
 
 
     /*Property in C# is a member of a class that provides a flexible mechanism for classes to expose private fields.
-     * property basically a reflection of this HangmanControlle
+     * property basically a reflection of this HangmanControlle. 
      */
     public bool isDead
     {

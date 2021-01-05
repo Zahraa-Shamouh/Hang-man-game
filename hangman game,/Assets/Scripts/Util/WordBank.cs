@@ -60,7 +60,7 @@ namespace Util
         }
         public string next(int limit)
         {
-            //random word
+            //select a random word
             int index = (int) (Random.value * (words.Length -1)); 
             return words[index]; 
         }

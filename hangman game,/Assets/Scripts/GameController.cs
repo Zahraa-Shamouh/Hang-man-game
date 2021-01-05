@@ -56,7 +56,7 @@ public class GameController : MonoBehaviour
                 {
                     //show the word to the player 
                     wordIndicator.text = word; 
-                    GameCompleted = true; // gameover. 
+                    GameCompleted = true; //Gameover her !!
                 }
             }
         }
@@ -94,7 +94,7 @@ public class GameController : MonoBehaviour
             this.score += score; 
             if (complete == Revealed.Length)
             {
-                this.GameCompleted = true;
+                this.GameCompleted = true; 
                 this.score += Revealed.Length; 
             }
             updateWordIndicator(); 
