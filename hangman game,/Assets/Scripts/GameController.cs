@@ -37,10 +37,6 @@ public class GameController : MonoBehaviour
             return; 
         }
 
-       // if (! Input.anyKeyDown)
-       //     return; 
-
-
         string s = Input.inputString;
         //one letter at a time
         if (s.Length == 1 && TextUtil.isLAlpha(s[0]))
@@ -57,6 +53,9 @@ public class GameController : MonoBehaviour
                     //show the word to the player 
                     wordIndicator.text = word; 
                     GameCompleted = true; //Gameover her !!
+
+
+                    //COUT. OR RESTART. 
                 }
             }
         }
@@ -82,10 +81,7 @@ public class GameController : MonoBehaviour
             }
 
             if (Revealed[i] != 0)
-            {
                 complete++; 
-            }
-
         }
 
         //score manipulation 
@@ -100,9 +96,7 @@ public class GameController : MonoBehaviour
             updateWordIndicator(); 
             updatescoreIndicator(); 
         }
-
         return checks; 
-
     }
     private void updateWordIndicator()
     {
@@ -120,7 +114,6 @@ public class GameController : MonoBehaviour
             displayed += ' ';
             displayed += c; 
         }
-        
         wordIndicator.text = displayed; //to display the _ for the word so the player can guess it. 
     }
 
@@ -143,6 +136,9 @@ public class GameController : MonoBehaviour
     }
 
     public void next() {
+
+        //ASK USER IF HE WANT TO CONT. THE GAME. 
+
         hangman.reset();          // call it from the HangmanController.cs
         GameCompleted = false;
         SetwordIndicator(WordBank.instance.next(0)); 
@@ -152,10 +148,9 @@ public class GameController : MonoBehaviour
     {
         //setting the scoure 
         score = 0;                //the initial value of the score!
-        //GameCompleted = false;    //game is not finish. 
-       
-        //GameCompleted = false; 
         updatescoreIndicator();   // get the score. 
         next();                   //call fuction in a function. 
     }
+
+    
 }

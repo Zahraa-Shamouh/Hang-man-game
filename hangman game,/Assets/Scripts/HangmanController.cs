@@ -32,12 +32,6 @@ public class HangmanController : MonoBehaviour
         reset();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void punish()
     {
         if (tries >= 0)
@@ -51,7 +45,6 @@ public class HangmanController : MonoBehaviour
     {
         if (parts == null) //should be at the initially   
             return;
-
 
         tries = parts.Length - 1;
 
