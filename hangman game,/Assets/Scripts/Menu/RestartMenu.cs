@@ -8,6 +8,7 @@ public class RestartMenu : MonoBehaviour
 {
     public void Restart()
     {
-        SceneManager.LoadScene("Game");
+        //SceneManager.LoadScene("Game");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); 
     }
 }

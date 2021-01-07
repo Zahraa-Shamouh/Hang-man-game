@@ -5,9 +5,23 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public void playGame()
+    public void playGame_Game()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); 
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); //load next scene
+        SceneManager.LoadScene("Game"); // 1000 word
+    }
+
+    public void playGame_Game1()
+    {
+        SceneManager.LoadScene("Game 1"); // disney characters
+    }
+    public void playGame_Game2()
+    {
+        SceneManager.LoadScene("Game 2"); // sports
+    }
+    public void playGame_Game3()
+    {
+        SceneManager.LoadScene("Game 3"); // countries
     }
 
     public void QuitGame()

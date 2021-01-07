@@ -43,6 +43,6 @@ public class PsuseMenu : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit(); 
-        Debug.Log("Quiting Game");
+        Debug.Log("Quiting the Game");
     }
 }
