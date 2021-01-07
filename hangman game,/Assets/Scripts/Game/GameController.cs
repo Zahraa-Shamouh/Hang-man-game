@@ -24,7 +24,6 @@ public class GameController : MonoBehaviour
         hangman = GameObject.FindGameObjectWithTag("Player").GetComponent<HangmanController>(); 
         reset(); 
     }
-
     // Update is called once per frame
      void Update()
     {
@@ -41,7 +40,7 @@ public class GameController : MonoBehaviour
         //one letter at a time
         if (s.Length == 1 && TextUtil.isLAlpha(s[0]))
         {
-            Debug.Log("Have " + s);
+            Debug.Log("Have " + s); //the letter the player inputs. 
 
             //chech to player failure. 
             if (!check(s.ToUpper()[0]))
@@ -53,13 +52,15 @@ public class GameController : MonoBehaviour
                     //show the word to the player 
                     wordIndicator.text = word; 
                     GameCompleted = true; //Gameover her !!
-
+                    Debug.Log("you lost, try again"); 
 
                     //COUT. OR RESTART. 
                 }
             }
         }
     }
+
+
 
     private bool check (char c)
     {
@@ -90,7 +91,8 @@ public class GameController : MonoBehaviour
             this.score += score; 
             if (complete == Revealed.Length)
             {
-                this.GameCompleted = true; 
+                this.GameCompleted = true;
+                Debug.Log("you win, countinue playing");
                 this.score += Revealed.Length; 
             }
             updateWordIndicator(); 
@@ -116,17 +118,11 @@ public class GameController : MonoBehaviour
         }
         wordIndicator.text = displayed; //to display the _ for the word so the player can guess it. 
     }
-
-
     private void updatescoreIndicator()
     {
         scoreIndicator.text = "Your Score: " + score; 
     }
-
-
-
-    //to set the word 
-    void SetwordIndicator(string word)
+    void SetwordIndicator(string word) //to set the word 
     {
         word = word.ToUpper(); 
         this.word = word;
@@ -134,16 +130,12 @@ public class GameController : MonoBehaviour
         letterIndicator.text = "Number of Letters: " + word.Length; //# of letters, how long the letters is. 
         updateWordIndicator(); 
     }
-
-    public void next() {
-
-        //ASK USER IF HE WANT TO CONT. THE GAME. 
-
+    public void next()
+    {
         hangman.reset();          // call it from the HangmanController.cs
         GameCompleted = false;
         SetwordIndicator(WordBank1.instance.next(0)); 
     }
-
     public void reset()
     {
         //setting the scoure 
@@ -151,6 +143,4 @@ public class GameController : MonoBehaviour
         updatescoreIndicator();   // get the score. 
         next();                   //call fuction in a function. 
     }
-
-    
 }

@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement; 
+using UnityEngine.SceneManagement;
+
 
 public class MainMenu : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class MainMenu : MonoBehaviour
 
     public void playGame_Game1()
     {
-        SceneManager.LoadScene("Game 1"); // disney characters
+        SceneManager.LoadScene("Game 1"); // Disney characters
     }
     public void playGame_Game2()
     {

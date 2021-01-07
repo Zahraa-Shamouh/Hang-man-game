@@ -37,7 +37,6 @@ namespace Util
             if (S_instance != null)
                 return S_instance;
 
-
             //create a place for our words to go. 
             HashSet<string> wordList = new HashSet<string>();
 
