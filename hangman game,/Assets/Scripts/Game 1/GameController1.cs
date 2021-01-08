@@ -17,6 +17,9 @@ public class GameController1 : MonoBehaviour
     private int score;
     private bool GameCompleted;
 
+    public GameObject playerWinFX;
+    public GameObject playerLoseFX;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -53,8 +56,8 @@ public class GameController1 : MonoBehaviour
                     //show the word to the player 
                     wordIndicator.text = word; 
                     GameCompleted = true; //Gameover her !!
-
-
+                    Debug.Log("you lost, try again");
+                    Instantiate(playerLoseFX, hangman.transform.position, hangman.transform.rotation);
                     //COUT. OR RESTART. 
                 }
             }
@@ -90,7 +93,9 @@ public class GameController1 : MonoBehaviour
             this.score += score; 
             if (complete == Revealed.Length)
             {
-                this.GameCompleted = true; 
+                this.GameCompleted = true;
+                Debug.Log("you win, countinue playing");
+                Instantiate(playerWinFX, hangman.transform.position, hangman.transform.rotation);
                 this.score += Revealed.Length; 
             }
             updateWordIndicator(); 
