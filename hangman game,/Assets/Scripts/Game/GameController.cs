@@ -18,7 +18,10 @@ public class GameController : MonoBehaviour
     private bool GameCompleted;
 
     public GameObject playerWinFX;
-    public GameObject playerLoseFX; 
+    public GameObject playerLoseFX;
+
+    public GameObject text_lose;
+    public GameObject text_win;
 
     // Start is called before the first frame update
     void Start()
@@ -56,8 +59,8 @@ public class GameController : MonoBehaviour
                     wordIndicator.text = word; 
                     GameCompleted = true; //Gameover her !!
                     Debug.Log("you lost, try again");
-                    Instantiate(playerLoseFX, hangman.transform.position, hangman.transform.rotation);
-                    //COUT. OR RESTART. 
+                    text_lose.SetActive(true);  
+                    Instantiate(playerLoseFX, hangman.transform.position, hangman.transform.rotation); 
                 }
             }
         }
@@ -96,6 +99,7 @@ public class GameController : MonoBehaviour
             {
                 this.GameCompleted = true;
                 Debug.Log("you win, countinue playing");
+                text_win.SetActive(true);
                 Instantiate(playerWinFX, hangman.transform.position, hangman.transform.rotation); 
                 this.score += Revealed.Length; 
             }
